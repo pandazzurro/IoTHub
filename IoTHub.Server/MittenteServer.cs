@@ -80,5 +80,26 @@ namespace IoTHub.Server
                 Console.WriteLine(ex);
             }
         }
+
+
+        /// <summary>
+        /// Metodo non utilizzato:
+        /// Serve per riceve una notifica di file caricato sul Blob
+        /// </summary>
+        /// <returns></returns>
+        private async Task RiceviNotificaCaricamentoFileAsync()
+        {
+            var notificationReceiver = _serviceClient.GetFileNotificationReceiver();
+            while (true)
+            {
+                var fileUploadNotification = await notificationReceiver.ReceiveAsync();
+                if (fileUploadNotification == null) continue;
+                                
+                Console.WriteLine($"Received file upload noticiation: {fileUploadNotification.BlobName} - {fileUploadNotification.BlobUri}");
+
+                //Completo il messaggio di notifica
+                await notificationReceiver.CompleteAsync(fileUploadNotification);
+            }
+        }
     }
 }

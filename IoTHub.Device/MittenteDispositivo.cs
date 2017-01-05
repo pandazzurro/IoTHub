@@ -4,6 +4,7 @@ using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -103,5 +104,19 @@ namespace IoTHub.Devices
             MethodResponse response = new MethodResponse(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(serverResponse)), 0);
             return response;
         }
+
+        /// <summary>
+        /// Metodo non utilizzato. Aggiunge/aggiorna un file nell'account di archiviazione
+        /// </summary>
+        /// <returns></returns>
+        public async Task InviaFileAsync()
+        {
+            using (var fileDaCaricare = new FileStream(@"image.jpg", FileMode.Open))
+            {
+                await _client.UploadToBlobAsync("blobName", fileDaCaricare);
+            }
+        }
+
+      
     }
 }

@@ -74,5 +74,6 @@ namespace IoTHub.Server
                 await _serverSender.InviaAsync(nuovoDatoRicevuto.Dispositivo, messageToSend);
             }
         }
+
     }
 }
