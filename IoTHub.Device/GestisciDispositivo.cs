@@ -34,8 +34,6 @@ namespace IoTHub.Devices
         /// <returns></returns>
         public async Task<Device> RegistraDispositivoAsync()
         {
-            try
-            {
                 Device dispositivoRegistrato = await _registryManager.GetDeviceAsync(_nomeDispositivo);
                 if (dispositivoRegistrato == null)
                     dispositivoRegistrato = await _registryManager.AddDeviceAsync(DispositivoCorrente);
@@ -43,8 +41,19 @@ namespace IoTHub.Devices
                 _dispositivoCorrente = dispositivoRegistrato;
                 Console.WriteLine("Identità dispositivo: {0}", DispositivoCorrente.Authentication.SymmetricKey.PrimaryKey);
                 return DispositivoCorrente;
-            }
-            catch(Exception ex) { Console.WriteLine(ex.Message);  throw; }
-        }        
+        }
+
+        /// <summary>
+        /// Rimuove il dispositivo registrato
+        /// </summary>
+        /// <param name="nomeDispositivo"></param>
+        /// <returns></returns>
+        public async Task RimuoviDispositivoRegistrato()
+        {
+            Device dispositivoRegistrato = await _registryManager.GetDeviceAsync(_nomeDispositivo);
+            if(dispositivoRegistrato != null)
+                await _registryManager.RemoveDeviceAsync(_nomeDispositivo);
+        }
+               
     }
 }

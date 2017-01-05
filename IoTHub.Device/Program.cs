@@ -21,7 +21,13 @@ namespace IoTHub.Devices
             HubUri = ConfigurationManager.AppSettings["IoTHubUri"];
             List<Task> tasks = new List<Task>();
 
-            for(int i = 0; i < 20; i++)
+            for (int i = 0; i < 20; i++)
+            {
+                GestisciDispositivo gestisciDispositivo = new GestisciDispositivo($"dispositivo{i}", connectionString);
+                gestisciDispositivo.RimuoviDispositivoRegistrato().Wait();
+            }
+
+            for (int i = 0; i < 20; i++)
             {
                 var t = Task.Run(async () =>
                 {
@@ -30,7 +36,7 @@ namespace IoTHub.Devices
 
                     DeviceClient client = DeviceClient.Create(HubUri,
                         new DeviceAuthenticationWithRegistrySymmetricKey(dispositivo.Id, dispositivo.Authentication.SymmetricKey.PrimaryKey),
-                        Microsoft.Azure.Devices.Client.TransportType.Mqtt_WebSocket_Only);
+                        Microsoft.Azure.Devices.Client.TransportType.Mqtt);
                     MittenteDispositivo mittente = new MittenteDispositivo(dispositivo, client);
 
                     await mittente.RegistraMetodoSulDispositivoAsync();

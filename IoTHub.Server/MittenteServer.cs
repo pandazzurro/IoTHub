@@ -31,7 +31,8 @@ namespace IoTHub.Server
         public async Task InviaAsync(string deviceId, string objectToSend)
         {
             var commandMessage = new Message(Encoding.ASCII.GetBytes(objectToSend));
-            commandMessage.Ack = DeliveryAcknowledgement.Full; // impone l'ack di risposta da parte del dispositivo
+            commandMessage.Ack = DeliveryAcknowledgement.PositiveOnly; // impone l'ack di risposta da parte del dispositivo
+            commandMessage.MessageId = "MessageIdUnivoco" + new Random().Next(1, 20);
             
             await _serviceClient.SendAsync(deviceId, commandMessage);
             Console.WriteLine($"Invio messaggio al device {objectToSend}");
@@ -53,7 +54,7 @@ namespace IoTHub.Server
 
                 foreach(var record in batch.Records)
                 {
-                    Console.WriteLine($"Feedback ricevuto: {record.StatusCode} - {batch.UserId}");
+                    Console.WriteLine($"Feedback ricevuto: {record.OriginalMessageId} - {batch.UserId}");
                 }
             }
         }
