@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTHub.Server", "IoTHub.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTHub.TelemetryData", "IoTHub.TelemetryData\IoTHub.TelemetryData.csproj", "{49994EFA-C932-4B23-B23F-EE1CE63AEBCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTHub.ConnectedService", "IoTHub.ConnectedService\IoTHub.ConnectedService.csproj", "{81EF3CF2-88B8-4956-96BD-9F2EEC2BF94D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{49994EFA-C932-4B23-B23F-EE1CE63AEBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49994EFA-C932-4B23-B23F-EE1CE63AEBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49994EFA-C932-4B23-B23F-EE1CE63AEBCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81EF3CF2-88B8-4956-96BD-9F2EEC2BF94D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81EF3CF2-88B8-4956-96BD-9F2EEC2BF94D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81EF3CF2-88B8-4956-96BD-9F2EEC2BF94D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81EF3CF2-88B8-4956-96BD-9F2EEC2BF94D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
